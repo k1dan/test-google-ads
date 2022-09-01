@@ -3,11 +3,9 @@ package main
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
 	"log"
 	"math/rand"
 	"net/http"
-	"os"
 	"regexp"
 	"strconv"
 	"time"
@@ -219,10 +217,7 @@ func main() {
 
 	router.HandleFunc("/customers/{id}/googleAds:searchStream", searchStream)
 
-	_ = godotenv.Load(".env")
-	
-	port := os.Getenv("PORT")
-	log.Fatal(http.ListenAndServe(port, router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 
 }
 
